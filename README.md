@@ -1,2 +1,1 @@
-# kaleidoscope-compiler
-Custom LLVM-based programming language frontend implementation
+# Custom LLVM-based programming language frontend implementation
