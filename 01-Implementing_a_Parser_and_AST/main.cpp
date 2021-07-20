@@ -34,7 +34,7 @@ static int gettok() {
     // Skipping whitespaces
     while (isspace(LastChar)) {
         LastChar = getchar();
-	}
+    }
     
     // Identifier: [a-zA-Z][a-zA-Z0-9]*
     if (isalpha(LastChar)) {
@@ -213,7 +213,7 @@ static std::unique_ptr<ExprAST> ParseParenExpr() {
     
     if (CurTok != ')') {
         return LogError("expected ')'");
-	}
+    }
     getNextToken();
     return V;
 }
