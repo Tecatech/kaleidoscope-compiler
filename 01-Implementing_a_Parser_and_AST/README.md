@@ -16,6 +16,14 @@ In our example, functions are typed with just a count of their arguments. Since 
 
 With this scaffolding, we can now talk about parsing expressions and function bodies in Kaleidoscope.
 
+## Parser Basics
+
+Now that we have an AST to build, we need to define the parser code to build it. The idea here is that we want to parse something like `x + y` (which is returned as three tokens by the lexer) into an AST that could be generated with calls like this:
+
+![alt text](https://github.com/tecatech/kaleidoscope-compiler/blob/main/01-Implementing_a_Parser_and_AST/assets/clang_llvm_parser.png)
+
+The error recovery in our parser will not be the best and is not particular user-friendly, but it will be enough for our tutorial. These routines make it easier to handle errors in routines that have various return types: they always return null.
+
 ## Conclusions
 
 Because our compiler uses the LLVM libraries, we need to link them in. To do this, we use the `llvm-config` tool to inform our command line about which options to use:
