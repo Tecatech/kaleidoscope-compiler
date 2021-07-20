@@ -6,6 +6,16 @@ This chapter shows you how to use the lexer to build a full `parser` for our Kal
 
 The parser we will build uses a combination of `Recursive Descent Parsing` and `Operator-Precedence Parsing` to parse the Kaleidoscope language (the latter for binary expressions and the former for everything else). Before we get to parsing though, let’s talk about the output of the parser: the Abstract Syntax Tree.
 
+## The Abstract Syntax Tree (AST)
+
+The AST for a program captures its behavior in such a way that it is easy for later stages of the compiler (e.g. code generation) to interpret. We basically want one object for each construct in the language, and the AST should closely model the language. In Kaleidoscope, we have expressions, a prototype, and a function object.
+
+![alt text](https://github.com/tecatech/kaleidoscope-compiler/blob/main/01-Implementing_a_Parser_and_AST/assets/clang_llvm_abstract_syntax_tree.png)
+
+In Kaleidoscope, functions are typed with just a count of their arguments. Since all values are double precision floating point, the type of each argument doesn’t need to be stored anywhere.
+
+With this scaffolding, we can now talk about parsing expressions and function bodies in Kaleidoscope.
+
 ## Conclusions
 
 Because our compiler uses the LLVM libraries, we need to link them in. To do this, we use the `llvm-config` tool to inform our command line about which options to use:
