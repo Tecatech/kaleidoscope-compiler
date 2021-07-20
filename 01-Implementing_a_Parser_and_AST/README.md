@@ -12,7 +12,7 @@ The AST for a program captures its behavior in such a way that it is easy for la
 
 ![alt text](https://github.com/tecatech/kaleidoscope-compiler/blob/main/01-Implementing_a_Parser_and_AST/assets/clang_llvm_abstract_syntax_tree.png)
 
-In Kaleidoscope, functions are typed with just a count of their arguments. Since all values are double precision floating point, the type of each argument doesn’t need to be stored anywhere.
+In our example, functions are typed with just a count of their arguments. Since all values are double precision floating point, the type of each argument doesn’t need to be stored anywhere.
 
 With this scaffolding, we can now talk about parsing expressions and function bodies in Kaleidoscope.
 
