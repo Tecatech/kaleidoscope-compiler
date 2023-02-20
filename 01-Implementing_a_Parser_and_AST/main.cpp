@@ -27,7 +27,7 @@ enum Token {
 static std::string IdentifierStr;
 static double NumVal;
 
-/// gettok — returns the next token from standard input
+/// gettok — returns next token from standard input
 static int gettok() {
     static int LastChar = ' ';
     
@@ -74,12 +74,12 @@ static int gettok() {
         }
     }
     
-    // Checking for the end of file
+    // Checking for EOF
     if (LastChar == EOF) {
         return tok_eof;
     }
     
-    // Returning the character as its ascii value
+    // Returning character as its ASCII value
     int ThisChar = LastChar;
     LastChar = getchar();
     return ThisChar;
@@ -167,10 +167,10 @@ public:
 static int CurTok;
 static int getNextToken() { return CurTok = gettok(); }
 
-/// BinopPrecedence — holds the precedence for each defined binary operator
+/// BinopPrecedence — holds precedence for each defined binary operator
 static std::map<char, int> BinopPrecedence;
 
-/// GetTokPrecedence — provides the precedence of the pending binary operator token
+/// GetTokPrecedence — provides precedence of pending binary operator token
 static int GetTokPrecedence() {
     if (!isascii(CurTok)) {
         return -1;
@@ -198,7 +198,7 @@ static std::unique_ptr<ExprAST> ParseExpression();
 /// numberexpr ::= number
 static std::unique_ptr<ExprAST> ParseNumberExpr() {
     auto Result = std::make_unique<NumberExprAST>(NumVal);
-    // Consuming the number
+    // Consuming number
     getNextToken();
     return std::move(Result);
 }
@@ -282,7 +282,7 @@ static std::unique_ptr<ExprAST> ParseBinOpRHS(int ExprPrec,
     while (true) {
         int TokPrec = GetTokPrecedence();
         
-        // Consuming the target binop 
+        // Consuming target binop 
         if (TokPrec < ExprPrec) {
             return LHS;
         }
@@ -290,7 +290,7 @@ static std::unique_ptr<ExprAST> ParseBinOpRHS(int ExprPrec,
         int BinOp = CurTok;
         getNextToken();
         
-        // Parsing the primary expression after the binary operator
+        // Parsing primary expression after binary operator
         auto RHS = ParsePrimary();
         if (!RHS) {
             return nullptr;
@@ -364,7 +364,7 @@ static std::unique_ptr<FunctionAST> ParseDefinition() {
 /// toplevelexpr ::= expression
 static std::unique_ptr<FunctionAST> ParseTopLevelExpr() {
     if (auto E = ParseExpression()) {
-        // Making an anonymous proto
+        // Making anonymous proto
         auto Proto = std::make_unique<PrototypeAST>("__anon_expr",
                                                     std::vector<std::string>());
         return std::make_unique<FunctionAST>(std::move(Proto), std::move(E));
@@ -403,7 +403,7 @@ static void HandleExtern() {
 }
 
 static void HandleTopLevelExpression() {
-    // Evaluating a top-level expression into an anonymous function
+    // Evaluating top-level expression into anonymous function
     if (ParseTopLevelExpr()) {
         fprintf(stderr, "Parsed a top-level expression\n");
     }
@@ -451,7 +451,7 @@ int main() {
     fprintf(stderr, "kaleidoscope >>> ");
     getNextToken();
     
-    // Running the main interpreter loop
+    // Running main interpreter loop
     MainLoop();
     
     return 0;
