@@ -2,17 +2,17 @@
 
 ## Introduction
 
-This chapter shows you how to use the lexer to build a full `parser` for our Kaleidoscope language. Once we have a parser, we’ll define and build an `Abstract Syntax Tree` (AST).
+This chapter shows you how to use lexer to build a full `parser` for our Kaleidoscope language. Once we have a parser, we'll define and build an `Abstract Syntax Tree` (AST).
 
-The parser we will build uses a combination of `Recursive Descent Parsing` and `Operator-Precedence Parsing` to parse the Kaleidoscope language (the latter for binary expressions and the former for everything else). Before we get to parsing though, let’s talk about the output of the parser: the Abstract Syntax Tree.
+The parser we'll build uses a combination of `Recursive Descent Parsing` and `Operator-Precedence Parsing` to parse the Kaleidoscope language (the latter for binary expressions and the former for everything else). Before we get to parsing, though, let's talk about the output of the parser: the Abstract Syntax Tree.
 
-## The Abstract Syntax Tree (AST)
+## Abstract Syntax Tree (AST)
 
-The AST for a program captures its behavior in such a way that it is easy for later stages of the compiler (e.g. code generation) to interpret. We basically want one object for each construct in the language, and the AST should closely model the language. In Kaleidoscope, we have expressions, a prototype, and a function object.
+The AST for a program captures its behavior in such a way that it is easy for later stages of the compiler (e.g. code generation) to interpret. We basically want one object for each construct in a language, and the AST should closely model the language. In Kaleidoscope, we have expressions, a prototype, and a function object.
 
 ![alt text](https://github.com/tecatech/kaleidoscope-compiler/blob/main/01-Implementing_a_Parser_and_AST/images/clang_llvm_abstract_syntax_tree.png)
 
-In our example, functions are typed with just a count of their arguments. Since all values are double precision floating point, the type of each argument doesn’t need to be stored anywhere.
+In our example, functions are typed with just a count of their arguments. Since all values are double precision floating point, the type of each argument doesn't need to be stored anywhere.
 
 With this scaffolding, we can now talk about parsing expressions and function bodies in Kaleidoscope.
 
@@ -22,7 +22,7 @@ Now that we have an AST to build, we need to define the parser code to build it.
 
 ![alt text](https://github.com/tecatech/kaleidoscope-compiler/blob/main/01-Implementing_a_Parser_and_AST/images/clang_llvm_parser.jpg)
 
-The error recovery in our parser will not be the best and is not particular user-friendly, but it will be enough for our tutorial. These routines make it easier to handle errors in routines that have various return types: they always return null.
+Error recovery in our parser won't be the best and isn't particular user-friendly, but it'll be enough for our tutorial. These routines make it easier to handle errors in routines that have various return types: they always return null.
 
 ## Conclusions
 
